@@ -23,12 +23,5 @@ if __name__=='__main__':
     import doctest
     from os.path import splitext
     nome_arq = '%s_test.txt' % splitext(__file__)[0]
-    try:
-        doctest.testfile(nome_arq, raise_on_error=True)
-    except doctest.DocTestFailure, ex:
-        print '-' * 60
-        print ex.example
-        print '-' * 60
-        print ex.got
-        print '-' * 60
-
+    doctest.testfile(nome_arq)
+    

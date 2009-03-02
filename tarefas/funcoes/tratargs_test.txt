@@ -9,7 +9,7 @@ Um argumento posicional gera um elemento XML sem conteúdo (tag solteiro)::
 
     >>> from tratargs import tag
     >>> print tag('br')
-    <br /!>
+    <br />
     
 Argumentos nomeados geram atributos no tag::
     
