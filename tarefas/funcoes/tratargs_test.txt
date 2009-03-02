@@ -1,0 +1,45 @@
+-------------------------------------------------------------------
+Tarefa: Função com tratamento de argumentos posicionais e nomeados
+-------------------------------------------------------------------
+
+Escreva uma função que gere um elemento XML qualquer a partir dos
+argumentos fornecidos, como demonstrado nos testes abaixo.
+
+Um argumento posicional gera um elemento XML sem conteúdo (tag solteiro)::
+
+    >>> from tratargs import tag
+    >>> print tag('br')
+    <br /!>
+    
+Argumentos nomeados geram atributos no tag::
+    
+    >>> print tag('img',src='foto.jpg',width=3,height=4)
+    <img src="foto.jpg" height="4" width="3" />
+    
+Argumentos posicionais excedentes (além do primeiro) geram conteúdo para
+o elemento XML. Neste caso é preciso gerar um tag abrindo e outro fechando::
+    
+    >>> print tag('a','Wikipedia',
+    ...     href='http://wikipedia.org')
+    <a href="http://wikipedia.org">Wikipedia</a>
+
+Quando há mais de um argumento posicional excedente, cada um destes argumentos
+excedentes deve gerar uma linha de conteúdo. Neste caso o elemento deve ser
+gerado em várias linhas, com cada um dos tags e cada um dos itens do conteúdo
+ocupando uma linha. Não se preocupe em indentar a saída com precisão (por isso
+este teste tem o flag +NORMALIZE_WHITESPACE)::
+
+    >>> print tag('p','Eu não devia te dizer', #doctest: +NORMALIZE_WHITESPACE
+    ...     'mas essa lua','mas esse conhaque',
+    ...     'botam a gente comovido como o diabo.',
+    ...     id='poesia')
+    <p id="poesia">
+        Eu não devia te dizer
+        mas essa lua
+        mas esse conhaque
+        botam a gente comovido como o diabo.
+    </p>
+    
+Bônus: faça o teste acima passar, desligando o flag NORMALIZE_WHITESPACE
+(você pode trocar o sinal + por - na frente do flag)
+
